@@ -13,14 +13,10 @@ class App extends React.Component {
       videos: [],
       gamer: null,
       twitchPlayer: null,
-      channelExists: true
+      channelExists: true,
+      isValidIngame: false,
+      gamerStats: null
     };
-    //FIX -- Handle Mismatched twitch and in-game name Tfue -> Not Tfue
-    axios.get('/stats',{
-      params: {gamer: "Not Tfue"}
-    })
-    .then(res => console.log(res.data));
-    //FIX
   }
 
   createPlayer(options) {
@@ -36,7 +32,6 @@ class App extends React.Component {
       params: {broadcast_type: "all",limit:10}
     })
     .then((res) => {
-      console.log(res.data);
       this.state.twitchPlayer.setChannel(query);
       this.setState({
         videos: res.data.videos,
@@ -44,9 +39,13 @@ class App extends React.Component {
         channelExists: true
       });
     })
+    .then(() => {
+      this.handleStatSearch(query);
+    })
     .catch((err) => {
       this.setState({
-        channelExists: false
+        channelExists: false,
+        isValidIngame: false
       })
     });
   }
@@ -58,18 +57,35 @@ class App extends React.Component {
 
   componentDidMount(){
     this.createPlayer();
-    this.handleSearch('Tfue');
+    this.handleSearch('Ninja');
+  }
+
+  handleStatSearch(query){
+    axios.get('/stats',{
+      params: {gamer: query}
+    })
+    .then(res => {
+      if(res.data === 'NOT FOUND') this.setState({isValidIngame: false});
+      else this.setState({isValidIngame: true, gamerStats: res.data});
+    });
   }
 
   render() {
     return (<div id="main">
       <div id="left">
+        <img id="logo" src="./LogoMakr_0AUnh0.png"></img>
         <Search handleSearch={this.handleSearch.bind(this)}/>
         {!this.state.channelExists
           ? <div id="notFound">Twitch channel not found</div>
           : null}
         <div id="twitchPlayer"></div>
-        <Stats gamer={this.state.gamer}/>
+        {this.state.isValidIngame
+          ? <Stats gamerStats={this.state.gamerStats}/>
+          : (<div id="stats">
+              <label id="noStats">FORTNITE PLAYER NOT FOUND... <br></br>Twitch channel name may not match in-game name.</label>
+              <Search className="statSearch" handleSearch={this.handleStatSearch.bind(this)}/>
+            </div>)
+        }
       </div>
       {this.state.videos.length !== 0
         ? <VideoList videos={this.state.videos} changeVideo={this.changeVideo.bind(this)}/>
@@ -79,10 +95,5 @@ class App extends React.Component {
     </div>);
   }
 }
-
-//curl -H 'Client-ID: XXX' -X GET 'https://api.twitch.tv/kraken/videos/top?game=Fortnite&limit=100' top vids
-//'https://api.twitch.tv/helix/streams?game_id=33214' most active streams
-
-
 
 ReactDOM.render(<App/>, document.getElementById('app'));

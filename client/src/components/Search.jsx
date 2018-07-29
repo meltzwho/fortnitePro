@@ -12,7 +12,6 @@ class Search extends React.Component {
   render(){
     return (<div id="search">
       <div className="search-bar form-inline">
-        <img id="logo" src="./LogoMakr_0AUnh0.png"></img>
         <input id="searchInput" className="form-control" type="text" defaultValue="search gamer..."
           onFocus={(e) => {e.target.value=""}} onChange={(e) => {this.state.query=e.target.value}}/>
         <button className="btn hidden-sm-down" onClick={() => {

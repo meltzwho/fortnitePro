@@ -6,8 +6,40 @@ class Stats extends React.Component {
     super(props);
   }
 
-  render() {    
-    return (<div id="stats"></div>);
+  render() {
+    let gamerStats = this.props.gamerStats;
+    let gameTypes = [];
+    let mapStatToTD = [];
+    for(var gameType in gamerStats.group){
+      if(gameType === "info") continue;
+      gameTypes.push(gameType);
+    }
+    for(var stat in gamerStats.lifetimeStats){
+      if(!/top/.test(stat) && !/time/.test(stat) && !/Min/.test(stat))
+      mapStatToTD.push(
+        (<tr>
+          <td>{stat}</td>
+          <td>{gamerStats.group[gameTypes[0]][stat]}</td>
+          <td>{gamerStats.group[gameTypes[1]][stat]}</td>
+          <td>{gamerStats.group[gameTypes[2]][stat]}</td>
+          <td>{gamerStats.lifetimeStats[stat]}</td>
+        </tr>)
+      );
+    }
+    console.log(gamerStats);
+    return (<div id="stats">
+      <h1>{this.props.gamerStats.info.username}</h1>
+      <table id="statTable">
+        <tr>
+          <th>Stat</th>
+          <th>Solos</th>
+          <th>Duos</th>
+          <th>Squads</th>
+          <th>Overall (current season)</th>
+        </tr>
+        {mapStatToTD}
+      </table>
+    </div>);
   }
 }
 

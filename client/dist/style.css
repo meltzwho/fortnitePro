@@ -143,15 +143,18 @@ body {
   position     : fixed;
   top          : 25%;
   left         : 80%;
-  background   : white;
+  background   : rgba(255, 255, 255, 0.5);
   border-radius: 4px;
 }
 
 #videoList {
-  overflow-y: auto;
-  float     : right;
-  height    : 100vh;
-  width     : 40%;
+  overflow-y  : auto;
+  height      : 100vh;
+  width       : 40%;
+  position    : absolute;
+  left        : 60%;
+  top         : 0;
+  padding-left: 5%;
 }
 
 #video {
@@ -160,9 +163,13 @@ body {
   padding      : 10px;
   border       : thick solid black;
   border-radius: 4px;
-  width        : 47%;
+  width        : 46%;
   height       : 40vh;
   background   : rgba(255, 255, 255, 0.5);
+}
+
+#video * {
+  width: 100%;
 }
 
 #video:hover {
@@ -175,8 +182,10 @@ body {
   color      : black;
 }
 
-#vidViews #vidStreamed {
-  font-size: 0.5em;
+#vidGame,
+#vidStreamed,
+#vidViews {
+  font-size: 0.9em;
 }
 
 iframe {
@@ -190,27 +199,50 @@ iframe {
 }
 
 #searchInput {
-  width: 350px;
+  width: 15vw;
 }
 
 #logo {
   height      : 8vh;
-  margin-right: 10%;
+  width       : 20vw;
+  margin-right: 5%;
 }
 
 #search {
   margin-bottom: 10px;
   height       : 8vh;
+  display      : inline-block;
 }
 
 #notFound {
-  background: white;
-  width     : 33%;
-  font-size : 2em;
+  background   : rgba(255, 255, 255, 0.5);
+  width        : 33%;
+  font-size    : 2em;
+  border-radius: 4px;
+}
+
+#noStats {
+  font-size: 2em;
+}
+
+#stats {
+  display      : inline-grid;
+  width        : 40vw;
+  margin-left  : 5%;
+  background   : rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+#statTable {
+  width: 100%;
+}
+
+#statTable * {
+  border       : 2px solid black;
+  border-radius: 4px;
+  font-size    : 1.25em;
 }
 
 #left {
-  display    : inline-block;
-  position   : fixed;
   margin-left: 5%;
 }
