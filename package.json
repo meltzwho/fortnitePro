@@ -1,0 +1,39 @@
+{
+  "name": "swp",
+  "version": "1.0.0",
+  "description": "Solo week project @ HackReactor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -d && node server/index.js",
+    "server-dev": "nodemon server/index.js",
+    "react-dev": "webpack --watch -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meltzwho/swp.git"
+  },
+  "author": "Eric Meltzer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meltzwho/swp/issues"
+  },
+  "homepage": "https://github.com/meltzwho/swp#readme",
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-loader": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-react": "latest",
+    "webpack": "latest"
+  },
+  "dependencies": {
+    "axios": "latest",
+    "body-parser": "latest",
+    "express": "latest",
+    "fortnite-api": "latest",
+    "knex": "latest",
+    "path": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}
