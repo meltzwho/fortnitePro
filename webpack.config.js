@@ -25,5 +25,8 @@ module.exports = {
     fs: 'empty',
     net: 'empty',
     tls: 'empty'
+  },
+  externals: {
+    knex: 'commonjs knex'
   }
 };

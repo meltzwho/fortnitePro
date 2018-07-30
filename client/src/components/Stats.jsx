@@ -26,9 +26,13 @@ class Stats extends React.Component {
         </tr>)
       );
     }
-    console.log(gamerStats);
     return (<div id="stats">
       <h1>{this.props.gamerStats.info.username}</h1>
+      <button id="wrongPlayer" className="btn" onClick={
+        ()=>this.props.wrongPlayer(this.props.gamerStats.info.username)
+      }>
+        wrong player?
+      </button>
       <table id="statTable">
         <tr>
           <th>Stat</th>

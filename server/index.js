@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const Fortnite = require("fortnite-api");
-const config = require("./config.js")
+const config = require("./config.js");
+const knex = require("../db/index.js");
 app.use(bodyParser());
 app.use(express.static(`${__dirname}/../client/dist`));
 
@@ -24,6 +25,21 @@ app.get('/stats', (req, res) => {
           res.send("NOT FOUND");
         });
     });
+});
+
+app.post('/db', (req, res) => {
+  let weight = 0;
+  knex.select('*').from('mapTwitchToIngame')
+  .where({twitchID: req.body.gamer, ingameID: req.body.query}).then((results)=>{
+    if(results.length > 0){
+      knex('mapTwitchToIngame').where({twitchID: req.body.gamer, ingameID: req.body.query}).update({weight: (results[0].weight + 1)})
+      .then();
+    }else{
+      knex('mapTwitchToIngame').insert({twitchID: req.body.gamer, ingameID: req.body.query, weight: weight})
+      .then();
+    }
+  });
+  res.end();
 });
 
 let port = process.env.PORT || 3000;

@@ -66,8 +66,17 @@ class App extends React.Component {
     })
     .then(res => {
       if(res.data === 'NOT FOUND') this.setState({isValidIngame: false});
-      else this.setState({isValidIngame: true, gamerStats: res.data});
+      else{
+        this.setState({isValidIngame: true, gamerStats: res.data});
+        axios.post('/db',
+          {gamer: this.state.gamer, query: query}
+        )
+      }
     });
+  }
+
+  wrongPlayer(player){
+    console.log(player);
   }
 
   render() {
@@ -80,7 +89,7 @@ class App extends React.Component {
           : null}
         <div id="twitchPlayer"></div>
         {this.state.isValidIngame
-          ? <Stats gamerStats={this.state.gamerStats}/>
+          ? <Stats gamerStats={this.state.gamerStats} wrongPlayer={this.wrongPlayer.bind(this)}/>
           : (<div id="stats">
               <label id="noStats">FORTNITE PLAYER NOT FOUND... <br></br>Twitch channel name may not match in-game name.</label>
               <Search className="statSearch" handleSearch={this.handleStatSearch.bind(this)}/>

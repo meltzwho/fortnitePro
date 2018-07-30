@@ -24,7 +24,6 @@
     "babel-loader": "latest",
     "babel-preset-es2015": "latest",
     "babel-preset-react": "latest",
-    "webpack": "latest"
   },
   "dependencies": {
     "axios": "latest",
@@ -34,6 +33,7 @@
     "knex": "latest",
     "path": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "sqlite3": "^3.1.13"
   }
 }

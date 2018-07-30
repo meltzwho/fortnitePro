@@ -133,8 +133,8 @@ table {
 }
 
 body {
-  background       : url("https://cdn2.unrealengine.com/Fortnite%2Fbattle-royale%2Ffortnite-sniper-1920x1080-f072fcef414cbe680e369a16a8d059d8a01c7636.jpg") !important;
-  background-repeat: no-repeat !important;
+  background        : url("https://cdn2.unrealengine.com/Fortnite%2Fbattle-royale%2Ffortnite-sniper-1920x1080-f072fcef414cbe680e369a16a8d059d8a01c7636.jpg") !important;
+  #background-repeat: no-repeat !important;
 }
 
 #noVids {
@@ -163,8 +163,8 @@ body {
   padding      : 10px;
   border       : thick solid black;
   border-radius: 4px;
-  width        : 46%;
-  height       : 40vh;
+  width        : 95%;
+  #height      : 40vh;
   background   : rgba(255, 255, 255, 0.5);
 }
 
@@ -227,7 +227,7 @@ iframe {
 
 #stats {
   display      : inline-grid;
-  width        : 40vw;
+  width        : 42.5vw;
   margin-left  : 5%;
   background   : rgba(255, 255, 255, 0.5);
   border-radius: 4px;
@@ -243,6 +243,15 @@ iframe {
   font-size    : 1.25em;
 }
 
+#wrongPlayer {
+  width : 50%;
+  margin: 1px 1px 1px 25%;
+}
+
 #left {
   margin-left: 5%;
+}
+
+h1 {
+  text-align: center !important;
 }
